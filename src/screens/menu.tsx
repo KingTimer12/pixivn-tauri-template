@@ -1,10 +1,11 @@
-import { addImage, clearAllGameDatas, GameStepManager, GameWindowManager, pixivnTestStartLabel } from "@drincs/pixi-vn"
+import { addImage, clearAllGameDatas, GameStepManager, GameWindowManager } from "@drincs/pixi-vn"
 import { motion } from 'framer-motion'
 import { useEffect } from "react"
 import { useModal, useUtils } from "src/hooks"
+import { startLabel } from "src/scenes"
 
 const Menu = () => {
-  const {open, setOpen} = useModal((state) => state)
+  const { open, setOpen } = useModal((state) => state)
   const { useNav } = useUtils()
 
   useEffect(() => {
@@ -23,7 +24,7 @@ const Menu = () => {
           onClick={() => {
             GameWindowManager.removeCanvasElements()
             useNav("/game")
-            GameStepManager.callLabel(pixivnTestStartLabel, {
+            GameStepManager.callLabel(startLabel, {
               navigate: useNav
             })
           }}>

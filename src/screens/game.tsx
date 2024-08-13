@@ -4,7 +4,6 @@ import { Dialogue } from "src/components";
 const Game = () => {
   return (
     <div className="flex flex-col items-center justify-end h-full gap-2 -mt-2">
-
       {getDialogueHistory()
         .map((dialoge, index) => {
           const character = getCharacterById(dialoge.dialoge?.character ?? "???")
