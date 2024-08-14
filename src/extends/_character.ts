@@ -6,12 +6,10 @@ interface ICharacterModel extends CharacterBaseModelProps {
 
 class CharacterModel extends CharacterBaseModel {
   [key: string]: any;
-  // __age?: number;
   
   constructor(id: string, props: ICharacterModel) {
     super(id, props)
     this.defaultCoins = props.coins
-    // this.__age = props.age
   }
   
   private defaultCoins: number = 0

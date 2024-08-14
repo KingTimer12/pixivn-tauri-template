@@ -1,4 +1,4 @@
-import { Dialogue, NextArea } from "src/components";
+import { Dialogue, NextArea, QuickActions } from "src/components";
 import { DialogueInterceptor } from "src/interceptors";
 
 const Game = () => {
@@ -7,9 +7,56 @@ const Game = () => {
     <NextArea>
       <DialogueInterceptor />
       <Dialogue />
-      <div className="bg-white">
-        Buttons
-      </div>
+      <QuickActions actions={[
+        {
+          label: 'Back', 
+          onClick: () => {
+            console.log("Back")
+          }
+        },
+        {
+          label: 'History', 
+          onClick: () => {
+            console.log("History")
+          }
+        },
+        {
+          label: 'Skip', 
+          onClick: () => {
+            console.log("Skip")
+          }
+        },
+        {
+          label: 'Save', 
+          onClick: () => {
+            console.log("Save")
+          }
+        },
+        {
+          label: 'Load', 
+          onClick: () => {
+            console.log("Load")
+          }
+        },
+        {
+          label: 'Quick Save', 
+          onClick: () => {
+            console.log("Quick Save")
+          }
+        },
+        {
+          label: 'Quick Load', 
+          onClick: () => {
+            console.log("Quick Load")
+          }
+        },
+        {
+          label: 'Preferences', 
+          onClick: () => {
+            console.log("Preferences")
+          }
+        }
+      ]} />
     </NextArea>
   )
 }
