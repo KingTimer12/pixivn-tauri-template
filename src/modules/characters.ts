@@ -10,3 +10,5 @@ const juliette = new MyCharacter('___pixivn_juliette___', {
 });
 
 saveCharacter(juliette)
+
+export { juliette }
