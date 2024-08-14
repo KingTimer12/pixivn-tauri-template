@@ -3,11 +3,11 @@ import { juliette } from "src/modules/characters";
 
 const LABEL_ID = 'start-label-id'; // or start_label_id
 
-const label = newLabel(LABEL_ID, 
+const label = newLabel(LABEL_ID,
   [
     () => setDialogue({ character: juliette, text: 'Hello, world!' }),
-    (props) => setDialogue({ character: juliette, text: 'I have ' + props.age + ' years old.' }),
-    (props) => setDialogue({ character: juliette, text: 'And ' + props.coins + ' coins.' }),
+    () => setDialogue({ character: juliette, text: 'I have {age} years old.' }),
+    () => setDialogue({ character: juliette, text: 'And {coins} coins.' }),
   ]
 );
 

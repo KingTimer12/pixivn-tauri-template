@@ -1,16 +1,16 @@
 import { create } from "zustand"
 
 type State = {
-  dataEvent: number
+  dataEvent: boolean
 }
 
 type Actions = {
-  setDataEvent: (value: number) => void
+  updateEvents: () => void
 }
 
 const hook = create<State & Actions>((set) => ({
-  dataEvent: 0,
-  setDataEvent: (dataEvent) => set({ dataEvent })
+  dataEvent: false,
+  updateEvents: () => set((state) => ({ dataEvent: !state.dataEvent }))
 }))
 
 export { hook as useData }

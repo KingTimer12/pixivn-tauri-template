@@ -7,7 +7,7 @@ import { startLabel } from "src/scenes"
 const Menu = () => {
   const { open, setOpen } = useModal((state) => state)
   const setHideInterface = useHideInterface((state) => state.setValue)
-  const { dataEvent, setDataEvent: notifyReloadInterfaceDataEvent } = useData((state) => state)
+  const notifyReloadInterfaceDataEvent = useData((state) => state.updateEvents)
   const { useNav } = useUtils()
 
   useEffect(() => {
@@ -29,9 +29,7 @@ const Menu = () => {
             useNav("/game")
             GameStepManager.callLabel(startLabel, {
               navigate: useNav
-            }).then(() => {
-              notifyReloadInterfaceDataEvent(dataEvent + 1)
-            })
+            }).then(notifyReloadInterfaceDataEvent)
           }}>
           Play
         </motion.button>

@@ -5,13 +5,18 @@ interface ICharacterModel extends CharacterBaseModelProps {
 }
 
 class CharacterModel extends CharacterBaseModel {
+  [key: string]: any;
+  // __age?: number;
+  
   constructor(id: string, props: ICharacterModel) {
     super(id, props)
+    this.defaultCoins = props.coins
+    // this.__age = props.age
   }
   
-  private _coins: number = 0
+  private defaultCoins: number = 0
   get coins(): number {
-    return this.getStorageProperty<number>("coins") || this._coins
+    return this.getStorageProperty<number>("coins") || this.defaultCoins
   }
   set coins(value: number) {
     this.setStorageProperty<number>("coins", value)

@@ -1,13 +1,13 @@
 import { GameStepManager, getSaveJson, loadSaveJson } from "@drincs/pixi-vn"
 import { StepLabelProps } from "@drincs/pixi-vn/dist/override"
 import { NavigateOptions, To, useNavigate } from "react-router-dom"
-import { useNextStep } from "src/hooks/_step"
 import { useData } from "src/hooks/_data"
+import { useNextStep } from "src/hooks/_step"
 
 const useUtils = () => {
   const navigate = useNavigate()
   const setNextStepLoading = useNextStep((state) => state.setValue)
-  const { dataEvent, setDataEvent: notifyReloadInterfaceDataEvent } = useData((state) => state)
+  const notifyReloadInterfaceDataEvent = useData((state) => state.updateEvents)
 
   const useNav = (to: To | number, options?: NavigateOptions) => {
     if (typeof to === "number") {
@@ -51,7 +51,7 @@ const useUtils = () => {
       }
       GameStepManager.goNext(props)
         .then(() => {
-          notifyReloadInterfaceDataEvent(dataEvent + 1)
+          notifyReloadInterfaceDataEvent()
           setNextStepLoading(false)
         })
         .catch((err) => {
@@ -65,11 +65,18 @@ const useUtils = () => {
     }
   }
 
+  const interpolateString = (variables: { [key: string]: string | number }, text?: string): string => {
+    return text?.replace(/{(\w+)}/g, (_, key) => {
+      return key in variables ? variables[key].toString() : `{${key}}`;
+    }) ?? "";
+  }
+
   return {
     useNav,
     loadRefreshSave,
     addRefreshSave,
-    nextStepOnClick
+    nextStepOnClick,
+    interpolateString
   }
 }
 

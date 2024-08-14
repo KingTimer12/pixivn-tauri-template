@@ -1,16 +1,17 @@
 import { getCharacterById, getDialogue } from "@drincs/pixi-vn";
 import { useEffect } from "react";
-import { MyCharacter } from "src/extends";
-import { useData, useDialogue, useHideInterface } from "src/hooks";
+import { MyCharacter, MyDialogue } from "src/extends";
+import { useData, useDialogue, useHideInterface, useUtils } from "src/hooks";
 
 const DialogueInterceptor = () => {
   const reloadInterfaceDataEvent = useData(s => s.dataEvent);
   const { data: { text, character }, setDialogData } = useDialogue(s => s);
   const hideInterface = useHideInterface(s => s.value);
+  const { interpolateString } = useUtils()
 
   useEffect(() => {
-    const dialogue = getDialogue();
-    const newText = dialogue?.text;
+    const dialogue = getDialogue<MyDialogue>();
+    const newText = interpolateString(character as Record<string, any>, dialogue?.text); // Convert {X} -> X | Example: {age} -> 20
     let newCharacter = undefined;
     if (dialogue) {
       newCharacter = dialogue.character ? getCharacterById<MyCharacter>(dialogue.character) : undefined
